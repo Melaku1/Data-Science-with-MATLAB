@@ -6,8 +6,8 @@ disp("The value of d  is :"+num2str(d));
 
 goof = a+d;
 disp("The value of goof is: "+num2str(goof));
-x1 = (-b +sqrt((b*b)-(4*a*c))/(2*a));
-x2 = (-b -sqrt((b*b)-(4*a*c))/(2*a));
+x1 = (-b +sqrt((b*b)-(4*a*c)))/(2*a);
+x2 = (-b -sqrt((b*b)-(4*a*c)))/(2*a);
 % create a variable sol with row vector x1 and x2
 sol = [x1,x2];
 % display the of sol
@@ -19,4 +19,4 @@ p =[a,b,c];
 
 solchk= roots(p);
 
-assert(sum(sol, solchk)==2, "Manual implementation is incorrect")
+assert(sum(sol==solchk)==2, "Manual implementation is incorrect")
