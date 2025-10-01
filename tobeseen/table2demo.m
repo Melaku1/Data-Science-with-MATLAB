@@ -1,0 +1,146 @@
+% excersice 2
+% assign 12 to the variable a
+a=12;
+%%
+% load inttrade table
+load inttrade
+%%
+inttrade
+%%
+% here when we use inttrade{3,2} the output is single number the value 
+
+btable= inttrade{3,2}+a;
+%%
+size(btable);
+disp(btable);
+%%
+% here when we use inttrade(3,2) the output is table 
+btable2 = inttrade(3,2)+a;
+disp(btable2);
+%%
+num = inttrade{3,2};
+disp(num);
+%%
+% an alternative way to convert bttable to array
+% Use table2array
+
+disp(table2array(btable2));
+
+%%
+% extract odd numbers of inttrade and add a to the power of 3
+
+dtable= inttrade(1:2:end,:)+ power(a,3);
+disp(dtable);
+
+%%
+
+% display as a table and display the first 3 row from dtable
+disp(dtable(1:3,:));
+
+%%
+% display as a double matrix and display the first 3 row from dtable
+ddouble = inttrade{1:2:end,:}+power(a,3);
+disp(ddouble(1:3,:));
+%%
+
+% current working directory
+
+pwd
+
+%%
+
+assert(strcmp(pwd, 'D:\2018\Github_Push'),'Not in the correct directory');
+%%
+%load a table with range
+
+X = readtable("D:\2018\Github_Push\Data_Science\Data_Science_With_matlab\DSwithMATLAB\matlabfilesuk\ch1Introduction\Firm.xlsx",'Range','A1:H15');
+
+% Display the size of the loaded table X
+disp(size(X));
+disp(head(X));
+
+%%
+disp(X);
+%display the record related to code P0213
+disp(X(X.Code=="P0213",:));
+%% 
+
+% display record 213 and 219 and column 2,3 and 4 of X
+disp(X(X.Code=="P0213" | X.Code=="P0219",2:4));
+
+%%
+% select  the surname and wage 
+
+uno = X(:,["Surname","Wage"]);
+
+%%
+% convert it to cell array and then string array
+c= table2cell(uno)
+S= string(c)
+%%
+% select the table variable using first cell array and then string array
+% Select the first variable from the table using the cell array and convert to string
+selectedVariableCell = c(:, 1);
+selectedVariableString = string(selectedVariableCell);
+disp(selectedVariableString);
+%%
+% Display the unique surnames from the selected variable
+uniqueSurnames = unique(selectedVariableString);
+disp(uniqueSurnames);
+%%
+% Count the number of unique surnames
+numUniqueSurnames = numel(uniqueSurnames);
+disp(numUniqueSurnames);
+%%
+% select the table variable using first cell array and then string array
+% Select the first variable from the table using the cell array and convert to string
+selectedVariableCell2 = c(:, 2);
+selectedVariableString2 = string(selectedVariableCell2);
+disp(selectedVariableString2);
+%%
+% display last 5 rows from uno
+
+last5 = uno(end-4:end,:);
+disp(last5);
+%%
+disp(uno);
+%%
+% select the first and last two column of x and display the first 8 row
+% using head section
+
+first8 = head((X(:,[1 end-1 ,end])),8);
+disp(first8);
+%% 
+% extract the row 5,7,9,...13 and wage column 
+exwage = X(5:2:13,"Wage");
+%disp(exwage);
+% change the above to array
+exwagea = table2array(exwage);
+disp(exwagea);
+%%
+% reate a boolean variable as logical array meaning which is true when the wage is between 200 and 300 name it boo
+boo =X.Wage>2000 & X.Wage<3000;
+% display the matrix for both the wage and the boo
+% disp(result(boo, :));
+result =[X.Wage,boo];
+disp(result);
+%%
+boo1 = X.Wage >3000 & X.Wage<4000;
+
+tabr = X(boo1,["Name" "Surname"]);
+disp(tabr);
+%%
+tabler= X(boo1,["Wage" "CommutingTime"]);
+disp(tabler);
+%%
+disp(table2array(tabler))
+%%
+% Create a new table with selected columns and display the first 5 rows
+selectedTable8 = X(:, ["Name", "Wage", "CommutingTime"]);
+disp(head(selectedTable8, 5));
+%%
+disp(X(10:13,:))
+%%
+X.Name{5}='NotKnown';
+%%
+X.Name{end-1}= 'P0999';
